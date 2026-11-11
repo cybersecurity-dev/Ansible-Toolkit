@@ -1,0 +1,204 @@
+flowchart LR
+    ROOT["Ansible Automation<br/>Ecosystem"]
+
+    ROOT --> TOOLKIT["Ansible Toolkit"]
+    ROOT --> USECASES["Ansible Use Cases"]
+
+    %% =====================================================
+    %% TOOLKIT
+    %% =====================================================
+
+    TOOLKIT --> AUTHOR["Automation<br/>Authoring"]
+    TOOLKIT --> EXECUTE["Execution<br/>Tools"]
+    TOOLKIT --> CONTENT["Content and<br/>Packaging"]
+    TOOLKIT --> TEST["Testing and<br/>Validation"]
+    TOOLKIT --> SECURE["Security and<br/>Access"]
+    TOOLKIT --> PLATFORM["Automation<br/>Platform"]
+    TOOLKIT --> INTEGRATE["Infrastructure<br/>Integrations"]
+
+    AUTHOR --> PLAYBOOKS["Playbooks"]
+    AUTHOR --> ROLES["Roles"]
+    AUTHOR --> INVENTORY["Inventory"]
+    AUTHOR --> VARIABLES["Variables and Facts"]
+    AUTHOR --> TEMPLATES["Jinja2 Templates"]
+    AUTHOR --> HANDLERS["Handlers"]
+
+    EXECUTE --> CORE["ansible-core"]
+    EXECUTE --> CLI["ansible-playbook"]
+    EXECUTE --> ADHOC["Ad-hoc Commands"]
+    EXECUTE --> RUNNER["Ansible Runner"]
+    EXECUTE --> NAVIGATOR["Ansible Navigator"]
+    EXECUTE --> EE["Execution Environments"]
+
+    CONTENT --> MODULES["Modules"]
+    CONTENT --> PLUGINS["Plugins"]
+    CONTENT --> COLLECTIONS["Collections"]
+    CONTENT --> GALAXY["Ansible Galaxy"]
+    CONTENT --> HUB["Private Automation Hub"]
+    CONTENT --> BUILDER["Ansible Builder"]
+
+    TEST --> LINT["ansible-lint"]
+    TEST --> MOLECULE["Molecule"]
+    TEST --> UNIT["Unit Tests"]
+    TEST --> SANITY["Sanity Tests"]
+    TEST --> CHECK["Check Mode"]
+    TEST --> DIFF["Diff Mode"]
+
+    SECURE --> VAULT["Ansible Vault"]
+    SECURE --> BECOME["Privilege Escalation"]
+    SECURE --> SSH["SSH Authentication"]
+    SECURE --> CREDS["Credential Management"]
+    SECURE --> RBAC["Role-Based Access Control"]
+    SECURE --> SECRETS["External Secret Managers"]
+
+    PLATFORM --> AAP["Ansible Automation<br/>Platform"]
+    PLATFORM --> CONTROLLER["Automation Controller"]
+    PLATFORM --> EDA["Event-Driven Ansible"]
+    PLATFORM --> MESH["Automation Mesh"]
+    PLATFORM --> ANALYTICS["Automation Analytics"]
+    PLATFORM --> API["REST API and Webhooks"]
+
+    INTEGRATE --> LINUX["Linux and Unix"]
+    INTEGRATE --> WINDOWS["Microsoft Windows"]
+    INTEGRATE --> NETWORKING["Network Devices"]
+    INTEGRATE --> CLOUDS["Cloud Platforms"]
+    INTEGRATE --> CONTAINERS["Containers and Kubernetes"]
+    INTEGRATE --> DEVOPS["CI/CD and DevOps"]
+
+    %% =====================================================
+    %% USE CASES
+    %% =====================================================
+
+    USECASES --> CONFIG["Configuration<br/>Management"]
+    USECASES --> PROVISION["Infrastructure<br/>Provisioning"]
+    USECASES --> DEPLOY["Application<br/>Deployment"]
+    USECASES --> ORCHESTRATE["IT<br/>Orchestration"]
+    USECASES --> CLOUD_AUTO["Cloud<br/>Automation"]
+    USECASES --> NETWORK_AUTO["Network<br/>Automation"]
+    USECASES --> SECURITY_AUTO["Security<br/>Automation"]
+    USECASES --> OPERATIONS["Operations and<br/>Maintenance"]
+
+    CONFIG --> PACKAGES["Package Installation<br/>and Updates"]
+    CONFIG --> SERVICES["Service Management"]
+    CONFIG --> FILES["Configuration Files<br/>and Templates"]
+    CONFIG --> USERS["Users, Groups and<br/>Permissions"]
+    CONFIG --> DESIRED["Desired-State<br/>Enforcement"]
+
+    PROVISION --> VMS["Virtual Machines"]
+    PROVISION --> BAREMETAL["Bare-Metal Servers"]
+    PROVISION --> STORAGE["Storage Resources"]
+    PROVISION --> DATABASES["Database Deployment"]
+    PROVISION --> IAC["Infrastructure as Code"]
+
+    DEPLOY --> APP_COMPONENTS["Application Components"]
+    DEPLOY --> ROLLING["Rolling Deployment"]
+    DEPLOY --> BLUEGREEN["Blue-Green Deployment"]
+    DEPLOY --> CANARY["Canary Deployment"]
+    DEPLOY --> ROLLBACK["Application Rollback"]
+
+    ORCHESTRATE --> MULTITIER["Multi-tier Applications"]
+    ORCHESTRATE --> WORKFLOWS["Multi-step Workflows"]
+    ORCHESTRATE --> DEPENDENCIES["Service Dependencies"]
+    ORCHESTRATE --> CHANGES["Planned Changes"]
+    ORCHESTRATE --> RECOVERY["Disaster Recovery"]
+
+    CLOUD_AUTO --> AWS["Amazon Web Services"]
+    CLOUD_AUTO --> AZURE["Microsoft Azure"]
+    CLOUD_AUTO --> GCP["Google Cloud"]
+    CLOUD_AUTO --> OPENSTACK["OpenStack"]
+    CLOUD_AUTO --> HYBRID["Hybrid and Multi-cloud"]
+
+    NETWORK_AUTO --> DEVICES["Device Configuration"]
+    NETWORK_AUTO --> VLAN["VLANs and Interfaces"]
+    NETWORK_AUTO --> ROUTING["Routing Policies"]
+    NETWORK_AUTO --> NETBACKUP["Configuration Backup"]
+    NETWORK_AUTO --> NETCOMPLIANCE["Network Compliance"]
+
+    SECURITY_AUTO --> PATCH["Security Patching"]
+    SECURITY_AUTO --> HARDENING["System Hardening"]
+    SECURITY_AUTO --> SECRET_USE["Secret Management"]
+    SECURITY_AUTO --> RESPONSE["Incident Response"]
+    SECURITY_AUTO --> REMEDIATION["Vulnerability Remediation"]
+
+    OPERATIONS --> HEALTH["System Health Checks"]
+    OPERATIONS --> LOGS["Logs and Diagnostics"]
+    OPERATIONS --> BACKUP["Backup and Restore"]
+    OPERATIONS --> MAINTENANCE["Scheduled Maintenance"]
+    OPERATIONS --> EVENT_REMEDIATION["Event-Driven Remediation"]
+
+    %% =====================================================
+    %% TOOLKIT-TO-USE-CASE CONNECTIONS
+    %% =====================================================
+
+    AUTHOR -. "defines" .-> CONFIG
+    AUTHOR -. "models" .-> DEPLOY
+    AUTHOR -. "coordinates" .-> ORCHESTRATE
+
+    EXECUTE -. "runs automation" .-> CONFIG
+    EXECUTE -. "executes deployments" .-> DEPLOY
+    EXECUTE -. "performs maintenance" .-> OPERATIONS
+
+    CONTENT -. "provides reusable content" .-> PROVISION
+    CONTENT -. "provides integrations" .-> CLOUD_AUTO
+    CONTENT -. "provides device modules" .-> NETWORK_AUTO
+
+    TEST -. "validates" .-> CONFIG
+    TEST -. "tests deployments" .-> DEPLOY
+    TEST -. "checks compliance" .-> SECURITY_AUTO
+
+    SECURE -. "protects credentials" .-> SECURITY_AUTO
+    SECURE -. "controls privileges" .-> OPERATIONS
+
+    PLATFORM -. "governs" .-> ORCHESTRATE
+    PLATFORM -. "scales" .-> CLOUD_AUTO
+    PLATFORM -. "responds to events" .-> OPERATIONS
+
+    INTEGRATE -. "targets resources" .-> PROVISION
+    INTEGRATE -. "connects providers" .-> CLOUD_AUTO
+    INTEGRATE -. "connects devices" .-> NETWORK_AUTO
+
+    %% =====================================================
+    %% STYLING
+    %% =====================================================
+
+    classDef root fill:#111827,stroke:#030712,color:#FFFFFF,stroke-width:3px
+    classDef major fill:#374151,stroke:#111827,color:#FFFFFF,stroke-width:3px
+
+    classDef author fill:#FFF5F5,stroke:#EF4444,color:#111827,stroke-width:2px
+    classDef execute fill:#FFF7ED,stroke:#F97316,color:#111827,stroke-width:2px
+    classDef content fill:#EFF6FF,stroke:#3B82F6,color:#111827,stroke-width:2px
+    classDef test fill:#F0FDF4,stroke:#22C55E,color:#111827,stroke-width:2px
+    classDef secure fill:#FAF5FF,stroke:#A855F7,color:#111827,stroke-width:2px
+    classDef platform fill:#FEFCE8,stroke:#EAB308,color:#111827,stroke-width:2px
+    classDef integration fill:#ECFEFF,stroke:#06B6D4,color:#111827,stroke-width:2px
+
+    classDef config fill:#FFF1F2,stroke:#E11D48,color:#111827,stroke-width:2px
+    classDef provision fill:#FFF7ED,stroke:#EA580C,color:#111827,stroke-width:2px
+    classDef deploy fill:#EFF6FF,stroke:#2563EB,color:#111827,stroke-width:2px
+    classDef orchestration fill:#FAF5FF,stroke:#9333EA,color:#111827,stroke-width:2px
+    classDef cloud fill:#ECFEFF,stroke:#0891B2,color:#111827,stroke-width:2px
+    classDef network fill:#F0FDF4,stroke:#16A34A,color:#111827,stroke-width:2px
+    classDef security fill:#FEFCE8,stroke:#CA8A04,color:#111827,stroke-width:2px
+    classDef operations fill:#F9FAFB,stroke:#4B5563,color:#111827,stroke-width:2px
+
+    class ROOT root
+    class TOOLKIT,USECASES major
+
+    class AUTHOR,PLAYBOOKS,ROLES,INVENTORY,VARIABLES,TEMPLATES,HANDLERS author
+    class EXECUTE,CORE,CLI,ADHOC,RUNNER,NAVIGATOR,EE execute
+    class CONTENT,MODULES,PLUGINS,COLLECTIONS,GALAXY,HUB,BUILDER content
+    class TEST,LINT,MOLECULE,UNIT,SANITY,CHECK,DIFF test
+    class SECURE,VAULT,BECOME,SSH,CREDS,RBAC,SECRETS secure
+    class PLATFORM,AAP,CONTROLLER,EDA,MESH,ANALYTICS,API platform
+    class INTEGRATE,LINUX,WINDOWS,NETWORKING,CLOUDS,CONTAINERS,DEVOPS integration
+
+    class CONFIG,PACKAGES,SERVICES,FILES,USERS,DESIRED config
+    class PROVISION,VMS,BAREMETAL,STORAGE,DATABASES,IAC provision
+    class DEPLOY,APP_COMPONENTS,ROLLING,BLUEGREEN,CANARY,ROLLBACK deploy
+    class ORCHESTRATE,MULTITIER,WORKFLOWS,DEPENDENCIES,CHANGES,RECOVERY orchestration
+    class CLOUD_AUTO,AWS,AZURE,GCP,OPENSTACK,HYBRID cloud
+    class NETWORK_AUTO,DEVICES,VLAN,ROUTING,NETBACKUP,NETCOMPLIANCE network
+    class SECURITY_AUTO,PATCH,HARDENING,SECRET_USE,RESPONSE,REMEDIATION security
+    class OPERATIONS,HEALTH,LOGS,BACKUP,MAINTENANCE,EVENT_REMEDIATION operations
+
+    click ROOT "https://wikipedia.org/wiki/Ansible_(software)" "Open Ansible overview" _blank

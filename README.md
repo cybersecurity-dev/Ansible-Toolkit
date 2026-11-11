@@ -83,7 +83,7 @@ flowchart LR
     NETWORK --> ARISTA["Arista EOS"]
 
     DEVOPS --> GITHUB["GitHub Actions"]
-    DEVOPS --> GITLAB["GitLab CI/CD"]
+    DEVOPS --> GITLAB["GitLab CI-CD"]
     DEVOPS --> JENKINS["Jenkins"]
     DEVOPS --> SERVICENOW["ServiceNow"]
 
